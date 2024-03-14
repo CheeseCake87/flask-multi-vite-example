@@ -1,0 +1,460 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[data-theme='light'] {
+    --html-body-bg-color: #eeeeee;
+    --html-footer-bg-color: #171717;
+    --html-default-text-color: #0b0b0b;
+    --html-footer-text-color: #eeeeee;
+    --html-scrollbar-track: rgba(20, 25, 33);
+    --html-scrollbar-thumb: rgba(56, 65, 80, 0.9);
+    --html-scrollbar-thumb-hover: rgba(56, 65, 80, 1);
+    --html-default-input-bg-color: rgba(229, 229, 229, 0.9);
+    --html-default-input-text-color: rgba(30, 30, 30, 0.9);
+    --html-default-button-bg-color: rgba(229, 229, 229, 0.9);
+    --html-default-button-hover-bg-color: rgba(219, 218, 218, 0.9);
+    --html-default-border-color: rgb(215, 215, 215);
+    --html-default-spinner-color: #0b0b0b;
+    --nav-bg-color: rgba(188, 188, 188, 0.9);
+    --card-bg-color: rgba(187, 187, 187, 0.1);
+}
+
+body {
+    background-color: var(--html-body-bg-color);
+    color: var(--html-default-text-color);
+
+    --button-good-bg-color: rgba(0, 255, 0, 0.2);
+    --button-good-border-color: rgba(0, 255, 0, 0.2);
+    --button-good-hf-bg-color: rgba(0, 255, 0, 0.3);
+    --button-good-hf-border-color: rgba(0, 255, 0, 0.3);
+
+    --button-bad-bg-color: rgba(255, 0, 0, 0.2);
+    --button-bad-border-color: rgba(255, 0, 0, 0.2);
+    --button-bad-hf-bg-color: rgba(255, 0, 0, 0.3);
+    --button-bad-hf-border-color: rgba(255, 0, 0, 0.3);
+}
+
+.desktop-block {
+    @apply hidden;
+}
+
+.mobile-block {
+    @apply block;
+}
+
+.desktop-flex {
+    @apply hidden;
+}
+
+.mobile-flex {
+    @apply flex;
+}
+
+
+@layer components {
+
+    dialog::backdrop {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    dialog {
+        @apply hidden opacity-0 pointer-events-none rounded-md;
+        transition: opacity 0.5s;
+        color: var(--html-default-text-color);
+    }
+
+    dialog[open] {
+        opacity: 1;
+        display: flex;
+        flex-direction: column;
+        pointer-events: inherit;
+    }
+
+    .dialog-body {
+        @apply flex-1 overflow-y-auto p-5;
+    }
+
+    .dialog-footer {
+        @apply p-4 flex flex-row justify-end gap-4;
+    }
+
+    nav {
+        @apply flex flex-row justify-between items-center px-5 py-3 sticky;
+        background-color: var(--nav-bg-color);
+    }
+
+    footer {
+        background-color: var(--html-footer-bg-color);
+        color: var(--html-footer-text-color);
+    }
+
+    footer a {
+        @apply underline opacity-80 hover:opacity-100 mb-2;
+        color: var(--html-footer-text-color);
+    }
+
+    .footer-sizing {
+        @apply flex flex-col gap-6 p-8;
+        max-width: 1020px;
+    }
+
+    .footer-technology {
+        @apply flex flex-wrap gap-2;
+    }
+
+    .footer-technology div {
+        @apply rounded-xl p-2 bg-gray-600 text-gray-50;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    h4 {
+        font-size: 1.25rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    form, .form {
+        @apply flex flex-col gap-4;
+    }
+
+    input, select {
+        @apply px-3 py-2 rounded-md w-full border;
+        background-color: var(--html-default-input-bg-color);
+        border-color: var(--html-default-border-color);
+        color: var(--html-default-input-text-color)
+    }
+
+    button, button[type='button'], input[type='submit'] {
+        @apply px-5 py-2 rounded-md border;
+        background-color: var(--html-default-button-bg-color);
+        border-color: var(--html-default-border-color);
+        color: var(--html-default-text-color);
+    }
+
+    button:hover, button[type='button']:hover, input[type='submit']:hover {
+        background-color: var(--html-default-button-hover-bg-color);
+    }
+
+    .button-large {
+        padding-top: 0.8rem !important;
+        padding-bottom: 0.8rem !important;
+    }
+
+    .container {
+        @apply grid mx-auto;
+        max-width: 1024px;
+    }
+
+    .hero {
+        @apply flex flex-col items-center justify-center my-6 mx-auto;
+        font-family: Pixel, sans-serif;
+        text-transform: uppercase;
+        max-width: 1024px;
+    }
+
+    .hero h1 {
+        @apply m-0;
+        font-size: 4rem;
+    }
+
+    .hero h2 {
+        @apply m-0;
+        font-size: 2rem;
+        /* font-size set to 5rem in @media */
+    }
+
+    .websites-hero-top {
+        background: linear-gradient(0deg, #bcd3fc, rgba(255, 255, 255, 0));
+        min-height: 100px;
+    }
+
+    .websites-hero {
+        @apply flex flex-col items-center justify-center overflow-clip;
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0), #bcd3fc);
+        min-height: 600px;
+        width: 100%;
+    }
+
+    .websites-hero-overlay {
+        @apply absolute flex flex-col items-center justify-center text-center p-4;
+    }
+
+    .websites-cloud {
+        @apply relative;
+        right: -60%;
+    }
+
+    .websites-sections {
+        @apply container grid-cols-1 grid-rows-3 gap-6 p-4;
+    }
+
+    .websites-responsive-desktop {
+        @apply hidden;
+    }
+
+    .websites-responsive-mobile {
+        @apply flex flex-col items-center justify-center px-4 py-24 text-center;
+    }
+
+    .business-hero {
+        @apply flex flex-col items-center justify-center text-center p-4;
+        min-height: 600px;
+        width: 100%;
+    }
+
+    .business-sections {
+        @apply container grid-cols-1 grid-rows-2 gap-6 p-4;
+    }
+
+    .contact {
+        @apply py-10 px-4 mx-auto mb-32;
+        max-width: 800px;
+    }
+
+    .contact h1 {
+        @apply text-center;
+        font-size: 3rem;
+        font-family: Pixel, sans-serif;
+    }
+
+    .contact label {
+        @apply font-bold;
+    }
+
+    .loading {
+        @apply flex flex-col items-center justify-center;
+    }
+
+    .spinner {
+        transform-origin: center;
+        animation: spinner_animation_1 2s linear infinite
+    }
+
+    .spinner circle {
+        stroke-linecap: round;
+        stroke: var(--html-default-spinner-color);
+        animation: spinner_animation_2 1.5s ease-in-out infinite
+    }
+
+    @keyframes spinner_animation_1 {
+        100% {
+            transform: rotate(360deg)
+        }
+    }
+    @keyframes spinner_animation_2 {
+        0% {
+            stroke-dasharray: 0 150;
+            stroke-dashoffset: 0
+        }
+        47.5% {
+            stroke-dasharray: 42 150;
+            stroke-dashoffset: -16
+        }
+        95%, 100% {
+            stroke-dasharray: 42 150;
+            stroke-dashoffset: -59
+        }
+    }
+
+    /* Colors */
+    .no-bg {
+        background-color: transparent;
+    }
+
+    .no-border {
+        background-color: transparent;
+    }
+
+    .warning {
+        background-color: var(--button-bad-bg-color);
+        border-color: var(--button-bad-border-color);
+    }
+
+    .success {
+        background-color: var(--button-good-bg-color);
+        border-color: var(--button-good-border-color);
+    }
+
+    .success-border {
+        border-color: var(--button-good-border-color);
+    }
+
+    .button-ghost {
+        background-color: rgba(229, 229, 229, 0.05) !important;
+    }
+
+    .button-ghost:hover, .button-ghost:focus {
+        background-color: rgba(219, 218, 218, 0.1) !important;
+    }
+
+    .button-good {
+        background-color: var(--button-good-bg-color) !important;
+        border-color: var(--button-good-border-color) !important;
+    }
+
+    .button-good:hover, .button-good:focus {
+        background-color: var(--button-good-hf-bg-color) !important;
+        border-color: var(--button-good-hf-border-color) !important;
+    }
+
+    .button-bad {
+        background-color: var(--button-bad-bg-color) !important;
+        border-color: var(--button-bad-border-color) !important;
+    }
+
+    .button-bad:hover, .button-bad:focus {
+        background-color: var(--button-bad-hf-bg-color) !important;
+        border-color: var(--button-bad-hf-border-color) !important;
+    }
+
+    .cursor-blink {
+        animation: cursor-blinker 1s linear infinite;
+        margin-left: -0.5rem;
+    }
+
+    .flashing-good {
+        animation: flashing-good-kf 2s infinite;
+    }
+
+    .flashing-bad {
+        animation: flashing-bad-kf 2s infinite;
+    }
+
+    .flashing-bad-color {
+        animation: flashing-bad-color-kf 2s infinite;
+    }
+
+    .flashing-warning-color {
+        animation: flashing-warning-color-kf 2s infinite;
+    }
+
+    @keyframes cursor-blinker {
+        0%, 50% {
+            opacity: 0;
+        }
+        51%, 100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes flashing-good-kf {
+        0% {
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+        50% {
+            background-color: rgba(0, 255, 0, 0.3);
+        }
+        100% {
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+    }
+
+    @keyframes flashing-bad-kf {
+        0% {
+            background-color: rgba(255, 0, 0, 0.1);
+        }
+        50% {
+            background-color: rgba(255, 0, 0, 0.3);
+        }
+        100% {
+            background-color: rgba(255, 0, 0, 0.1);
+        }
+    }
+
+    @keyframes flashing-bad-color-kf {
+        0% {
+            color: rgba(255, 0, 0, 0.1);
+        }
+        50% {
+            color: rgba(255, 0, 0, 0.3);
+        }
+        100% {
+            color: rgba(255, 0, 0, 0.1);
+        }
+    }
+
+    @keyframes flashing-warning-color-kf {
+        0% {
+            color: rgba(255, 234, 0, 0.1);
+        }
+        50% {
+            color: rgba(255, 234, 0, 0.5);
+        }
+        100% {
+            color: rgba(255, 234, 0, 0.1);
+        }
+    }
+
+    @keyframes cloud_animation {
+        0% {
+            opacity: 0.7;
+            right: -60%;
+        }
+        100% {
+            opacity: 0.7;
+            right: 60%;
+        }
+    }
+
+}
+
+@media (width >= 768px) {
+    .footer-sizing {
+        @apply grid grid-rows-1 grid-cols-3 gap-6 mx-auto;
+    }
+
+    .hero h2 {
+        font-size: 5rem;
+    }
+
+    .websites-sections {
+        @apply grid-cols-3 grid-rows-1;
+    }
+
+    .websites-responsive-desktop {
+        @apply grid grid-cols-2 grid-rows-1 gap-6 items-center p-4 mx-auto;
+        max-width: 1200px;
+    }
+
+    .websites-responsive-mobile {
+        @apply hidden;
+    }
+
+    .business-sections {
+        @apply grid-cols-2 grid-rows-1;
+    }
+
+    .desktop-block {
+        @apply block;
+    }
+
+    .mobile-block {
+        @apply hidden;
+    }
+
+    .desktop-flex {
+        @apply flex;
+    }
+
+    .mobile-flex {
+        @apply hidden;
+    }
+}

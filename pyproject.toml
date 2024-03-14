@@ -1,0 +1,28 @@
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 80
+indent-width = 4
+
+[lint]
+ignore = ["F403", "F405"]
+
+[dev]
+npm_binary = "npm"
+# /\ this can also point to the absolute path of npm binary
+flask_app = "flask_app"
+flask_static_root = "flask_app/resources/static"
+# /\ this is the flask app global static folder url_for('static', filename='...')
+
+[dev.vite.backend]
+vite_root = "vite_backend"
+flask_static_root = "flask_app/backend/static"
+flask_templates_root = "flask_app/backend/templates/backend"
+
+[dev.vite.frontend]
+vite_root = "vite_frontend"
+flask_static_root = "flask_app/frontend/static"
+flask_templates_root = "flask_app/frontend/templates/frontend"
